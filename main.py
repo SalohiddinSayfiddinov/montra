@@ -1,10 +1,19 @@
 from fastapi import FastAPI, HTTPException, Depends
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
 import uuid
 import random
 
 app = FastAPI(title="Student Finance App API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all HTTP methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allows all headers
+)
 
 # --- Mock Databases ---
 # In a real app, these would be a database (PostgreSQL, MongoDB, etc.)
